@@ -1,0 +1,135 @@
+Firstly we are doing the configuration of every single things or packages required
+    :will be doing all this in the (cd server )
+    
+     :initialized-npm init(this created the package.json)
+     :created a gitignore file and put the node modules init
+     :installed the express package-npm i express
+     :in express ES6 configuration needs to be done by babel so did that
+
+            // In NODE we have to set up some configurations to set up babel to convert high level
+            // ES6 to low level for some of the browser in react it comes prebuilt
+            // now after configuring babel we can use import
+     :configured babel- npm install @babel/preset-env @babel/cli @babel/node --save-dev  
+     :create .babelrc file and put -{"presets": ["@babel/preset-env"]}
+     :now we can use import so did all the imports of express
+     :install nodemon and change the script accordingly
+
+     :install mongoose for db and some more packages-npm i  mongoose cors helmet
+        :Helmet is a nodejs package that helps protect your server from some well-known web 
+        :Cors on the other hand is a node.js package that provides your express app with middlewares to enable Cross-origin resource sharing (CORS) which is a mechanism that allows resources on your express app from being shared with external domains, its important in making cross-domain requests possible in case it's needed. 
+        or align other API calls or data from other srvers to be taken in my protect
+     :now import them ass well and set up the express 
+
+
+NOw will be creating database inside server
+
+   :create a database folder inside that folder create various folders
+   :        ->Orders db
+            ->Users db
+            ->Restaurants db
+            ->Reviews db
+            ->Foods db
+            ->Menus db
+            ->Images db
+   :now  create schemas for them
+   :in some schemas some would be used as a reference in the other schemas
+   same as the concept of foreign key and primary key
+   :syntax--type: mongoose.Types.ObjectId,
+            ref:"Images"
+
+After all this is done We will be doing various API Plannings which will contain the end points by 
+which either we can fetch any particular item or the list of items 
+
+  :in this first we would design the api then make it by req and res
+  : and then use try anc catch method and throw some error
+  :example in API Folder
+  :import the models also which are used
+  :To encrypt our password entered we will use a npm package -becrypt js
+      npm install bcryptjs and import this also
+  :hashing and salting needs to be done
+      hashing is basically encryption of password in some wierd coded from
+      salting refers to again and again hashing of the coded output also
+   :after this we will be doing JWT auth token -- needed because in this we will be dealing with lot of parties fetching the data
+    sending something to do this in a secure way we need JWT auth token
+    :there is a package for JWT token which needs to be installed
+      npm install jsonwebtoken and import it also
+
+
+Connection to mongodb is done -create a new cluster 
+and put the URL in .env file for the security purpose and then install the package ---npm i env   and then require in the auth index file
+
+After this a connection.js file needs to be created for connecting our database 
+
+
+
+Now we will be using Static and Methods to restructure the lengthy code in short and proper way
+--Trying to make our code better by static and method
+   :Method-> First we create an instance then we ue that instance
+   :in static we do not create the instance we directly use it
+    ex- usermodel.findone is the static   we created a instance of checkuserby email is the instance over there using that instances we would be accessing our methods
+
+
+
+Now sign in api is created with the same layout by checking whether the user data exists or not if yes then throw something is the user already is there then throw some thing.
+
+Now creating google authentication at GCP(google cloud platform) by doing the following steps
+   
+     :Go to GCP 
+     :Then go to console option 
+     :Then to Api and services->credentials->library and search for google plus APi and enable it
+     :then to the same page from where we enabled and go to manage->then to credentials->create credentials->Oauth client id and do the needfull and save and continue;
+     :again credentials->create credentials->Oauth client and give the type of application and provide the base URL to the needed
+     :then add the redirect URL it is same as but have to add something /auth/google/callback to the original URL
+     : then create it 
+     :after that Download the Json file which will contain the client id and everything
+     :from that json file copy the google_client_id and the google_client_secret in the .env file
+
+Now we have to create a google auth config file so that we can do google auth configuration with our entire segment  
+   :Create a  config folder in server  and in that folder create a config file---google.config.js
+   :now after this we have to install some packages in the server for the google authentication---- npm i passport passport-google-oauth20
+   :then  import this in the config file
+   :import the user model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AWS SETUP
+
+ :login to the console 
+ :go to s3 option and create a bucket
+ :go to iam option -->step1 done with the other option enabled->step 2(attach policies directly) administrator access 
+ :then download the .csv file for further use
+ :install a npm package -->npm i aws-sdk
+
+
+NOW we would be setting up AWS  
+
+BUT why do we need this-we need this for the images API so we want that we upload the images to server and from the server RAMs
+the image is being uploaded to AWS and from AWS er are fetching the images in need
+
+
+
+IN the IMAGE API we have to create a route which will upload the images to the server and the  server RAMs
+the image is being uploaded to AWS and from AWS er are fetching the images in need
+so for this we have to configure AWS s3 bucket;;;
+

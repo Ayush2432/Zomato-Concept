@@ -1,0 +1,50 @@
+Pages we can have--: 1.Home Pages
+                     2.Delivery Page
+                     3.Night Life Pag
+
+
+
+Authentication -Private Pages--:
+                   
+                   Profile,settings,about etc
+
+
+TEch Stack:
+          ->Mongodb as the database
+          ->AWS S3 as a block storage for storing the images
+          -> Open street map(open source could be used for map integration)  
+          
+
+Database Planning : we would have separate db for diff things
+            ->Orders db
+            ->Users db
+            ->Restaurants db
+            ->Reviews db
+            ->Foods db
+            ->Menus db
+            ->Images db
+
+
+Authentication/Authorization -:
+             ->JWT(JSON web token)
+
+
+Deployment-:
+           ->Dockerizing is an important part as it keeps data in small-small part 
+                         so it is easy for the admins to understand it
+
+GitHub Repo->CICD(it tell that small packets /or we can say co have been created)->AWS for the deployment        
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+API Planning: we will be designing all these API
+            ->Auth API
+            ->Foods API -it will contain end points of any particular food or whole list of food which means it can fetch ant particular food item or the whole list
+            ->Restaurant API- SAME
+            ->Menu API-SAME
+            ->Order API-SAME
+            ->PAyments API-(Razorpay integration)
+            ->REviews-SAME
+            ->User-
+            ->Images

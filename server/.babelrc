@@ -1,0 +1,3 @@
+//  npm install @babel/preset-env @babel/cli @babel/node --save-dev      to configure abbel
+
+{"presets": ["@babel/preset-env"]}
