@@ -117,7 +117,7 @@ AWS SETUP
 
  :login to the console 
  :go to s3 option and create a bucket
- :go to iam option -->step1 done with the other option enabled->step 2(attach policies directly) administrator access 
+ :go to IAM option -->step1 done with the other option enabled->step 2(attach policies directly) administrator access 
  :then download the .csv file for further use
  :install a npm package -->npm i aws-sdk
 
@@ -132,4 +132,8 @@ the image is being uploaded to AWS and from AWS er are fetching the images in ne
 IN the IMAGE API we have to create a route which will upload the images to the server and the  server RAMs
 the image is being uploaded to AWS and from AWS er are fetching the images in need
 so for this we have to configure AWS s3 bucket;;;
+paste teh AWS_S3_ACCESS_KEY ans the AWS_S3_SECRET_KEY in env file
 
+now download another package that will let us upload the file in the server   ---         npm i multer
+
+import the aws and multer int the image API file

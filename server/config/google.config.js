@@ -21,7 +21,7 @@ export default (passport) => {
         },
         async(accessToken,refreshToken,profile,done)=>{
             const newUser={                             //basically creating the new user
-                fullname:profile.displayName,
+                fullName:profile.displayName,
                 email:profile.emails[0].value,
                 profilePic:profile.photos[0].value 
             };
@@ -31,12 +31,14 @@ export default (passport) => {
               if(user){
 
                 const token = user.generateJwtToken(); 
-                  
+                
                 done(null,{user,token});
               }
               else{
                 const user = await UserModel.create(newUser);    //creating user and returning it
-
+                
+                const token = user.generateJwtToken(); 
+                
                 done(null,{user,token});
               }
             }
