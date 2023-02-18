@@ -17,6 +17,7 @@ import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
 import Food from "./API/Food";
 import Menu from "./API/Menu";
+import Image from "./API/Image";
 
 // Database Connection
 import ConnectDB from "./database/connection";
@@ -54,6 +55,7 @@ zomato.use("/auth", Auth); //we r telling zomato to use auth and inside auth we 
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
 zomato.use("/menu", Menu);
+zomato.use("/image", Image);
 
 // setting the route
 zomato.get("/", (req, res) => res.json({ message: "Setup success" }));

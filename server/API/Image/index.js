@@ -14,7 +14,7 @@ const upload = multer({storage});            //now from RAM i want it to upload 
 
 
 // AWS S3 CONFIG
-const s3Bucket = new AWS.s3 ({
+const s3Bucket = new AWS.S3 ({
     accessKeyID: process.env.AWS_S3_ACCESS_KEY,
     secretAccessKey: process.env.AWS_S3_SECRET_KEY,
     region: "ap-south-1"
@@ -58,6 +58,9 @@ const s3Upload = (options) => {
       })
     );
 };
+
+ const uploadImage  = await s3Upload(bucketOptions);
+
     }
     catch(error){
 
