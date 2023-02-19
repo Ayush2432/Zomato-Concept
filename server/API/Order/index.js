@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";                             //used for authentication
 import { OrderModel } from "../../database/allModels";
 
 
@@ -21,7 +22,7 @@ Method         GET REquest
 */
 
 
-Router.get(":_id",async(req,res) => {
+Router.get(":_id",passport.authenticate("jwt", {session:false}) ,async(req,res) => {
     try{
         await ValidateUserId(_id);
         

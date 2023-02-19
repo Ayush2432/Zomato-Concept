@@ -10,6 +10,7 @@ import cors from "cors";
 import helmet from "helmet";
 import passport from "passport";
 import googleAuthConfig from "./config/google.config";
+import routeConfig from "./config/route.config";
 import session from "express-session";
 
 // Microservices routes
@@ -51,6 +52,7 @@ zomato.use(passport.session());
 
 // passport configuration
 googleAuthConfig(passport);
+routeConfig(passport);
 
 // For application routes  this is done so that the whole application uses this API for auth\
 zomato.use("/auth", Auth); //we r telling zomato to use auth and inside auth we have /signup so the whole route would be localhost:4000/auth/signup
