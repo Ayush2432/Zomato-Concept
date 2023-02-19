@@ -5,6 +5,9 @@ import { FoodModel } from "../../database/allModels";
 
 const Router = express.Router();
 
+// Validation
+import { ValidateRestaurantId ,ValidateCategory } from "../../Validation/food";
+
 
 
 // 1-->API for all food based on a particular restaurant
@@ -21,6 +24,9 @@ Method         GET REquest
 
 Router.get("/:_id",async(req,res) => {
     try{
+      
+        await ValidateRestaurantId(req.params);
+      
         const {_id} = req.params;
         const  foods= await FoodModel.find ({restaurant: _id});                               //we r trying to get the food of that particular restaurant ,the id is of that restaurant
     //   it means we r going to the food model and searching for the restaurant with the given  id and trying to find the food on thar restaurant 
@@ -52,6 +58,9 @@ Method         GET REquest
 
 Router.get("/r/:category",async(req,res) => {
     try{
+
+        await ValidateCategory(req.params);
+
         const {category} = req.params;
         const  foods= await FoodModel.find ({
             category: {$regex: category,$options:"i"}

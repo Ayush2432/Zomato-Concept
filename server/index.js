@@ -12,12 +12,15 @@ import passport from "passport";
 import googleAuthConfig from "./config/google.config";
 import session from "express-session";
 
-// API
+// Microservices routes
 import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
 import Food from "./API/Food";
 import Menu from "./API/Menu";
 import Image from "./API/Image";
+import Order from "./API/Order";
+import Review from "./API/Reviews";
+import User from "./API/Order";
 
 // Database Connection
 import ConnectDB from "./database/connection";
@@ -43,7 +46,6 @@ if (zomato.get("env") === "production") {
 }
 
 zomato.use(session(sess));
-//session expression likhna hai missing hai
 zomato.use(passport.initialize());
 zomato.use(passport.session());
 
@@ -56,6 +58,9 @@ zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
 zomato.use("/menu", Menu);
 zomato.use("/image", Image);
+zomato.use("/order", Order);
+zomato.use("/reviews", Review);
+zomato.use("/user", User);
 
 // setting the route
 zomato.get("/", (req, res) => res.json({ message: "Setup success" }));

@@ -1,11 +1,14 @@
 import express from "express";
-import passport from "passport";
 import { RestaurantModel } from "../../database/allModels";
 
 // making the all restaurants available on route routes
 
 const Router = express.Router();
 
+
+// Validation
+import {ValidateRestaurantCity,ValidateRestaurantSearchString} from "../../Validation/restaurant";
+import {ValidateRestaurantId} from "../../Validation/food";
 
 
 // 1-->API for all restaurants 
@@ -22,6 +25,8 @@ Method         GET REquest
 
 Router.get("/",async(req,res) => {
     try{
+
+     await ValidateRestaurantCity(req.query);   
      
     const {city} = req.query;
     const restaurant = await RestaurantModel.find({city});   //here we r tying to find all the restaurant present in that city
@@ -51,6 +56,9 @@ Method         GET REquest
 
 Router.get("/:_id",async(req,res) => {          // : is because the id is dynamically changing
     try{
+
+
+    await ValidateRestaurantId(req.params);
 
     const {_id} = req.params;
     const restaurant = await RestaurantModel.findOne(_id);
@@ -83,6 +91,8 @@ Method         GET REquest
 
 Router.get("/search",async(req,res) => {        
     try{
+
+    await ValidateRestaurantSearchString(req.body); 
 
     const {searchString} = req.body;                       //present in the body of ur request after we have accessed it  we will try to search particular restaurant on the basis of searchString
     const restaurants = await RestaurantModel.find({

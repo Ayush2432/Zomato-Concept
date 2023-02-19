@@ -10,13 +10,17 @@ const Router = express.Router();
 // import models
 import {UserModel}from "../../database/user"
 
+// Validation
+import { ValidateSignup, ValidateSignin } from "../../Validation/auth";           //we will destructure thing as there would be one more validation export for sign in also
+
+
 
 // creating API for authentication and authorization to do that we have to first design our API
 
 
 // 1-->Auth API
 
-/* Design of the API or the wireframe of the API
+/* Design of the API or the wire frame of the API
 
 Route         /signup
 Description   signup with email and password
@@ -27,6 +31,8 @@ Method        Post REquest
 
 Router.post("/signup",async(req,res) =>{
     try{
+
+    await ValidateSignup(req.body.credentials);
      
     await UserModel.findEmailAndPhone(req.body.credentials);     //using the instance tha twe created int the user model itself
 
@@ -49,10 +55,10 @@ Router.post("/signup",async(req,res) =>{
 
 // 2-->Sign in  API
 
-/* Design of the API or the wireframe of the API
+/* Design of the API or the wire frame of the API
 
-Route         /signin
-Description   signin with email and password
+Route         /sign in
+Description   sign in with email and password
 params        none
 Access        Public 
 Method        Post Request
@@ -60,6 +66,8 @@ Method        Post Request
 
 Router.post("/signin",async(req,res) =>{
   try{
+  
+  await ValidateSignin(req.body.credentials);
 
   const user = await UserModel.findByEmailAndPassword(req.body.credentials);
    
@@ -78,7 +86,7 @@ Router.post("/signin",async(req,res) =>{
 
 // 3-->Google Auth   API
 
-/* Design of the API or the wireframe of the API
+/* Design of the API or the wire frame of the API
 
 Route         /google
 Description   Google SignIn
@@ -101,7 +109,7 @@ Router.get("/google",passport.authenticate("google",{
 
 // 3-->after the authentication callback   API
 
-/* Design of the API or the wireframe of the API
+/* Design of the API or the wire frame of the API
 
 Route         /google/callback
 Description   Google SignIn
